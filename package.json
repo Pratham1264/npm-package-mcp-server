@@ -1,0 +1,46 @@
+{
+  "name": "npm-package-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP Server for fetching code from NPM packages",
+  "type": "module",
+  "main": "dist/server.js",
+  "bin": {
+    "npm-package-mcp-server": "./dist/server.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/server.js",
+    "dev": "tsx src/server.ts",
+    "clean": "rimraf dist",
+    "type-check": "tsc --noEmit",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "npm",
+    "package",
+    "code",
+    "typescript"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "tar": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/tar": "^6.1.13",
+    "rimraf": "^5.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
