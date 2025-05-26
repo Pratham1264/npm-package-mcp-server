@@ -162,7 +162,7 @@ MIT © [Ligament](https://github.com/Ligament)
 
 ## 🌟 Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=Ligament/npm-package-mcp-server&type=Date)](https://star-history.com/#Ligament/npm-package-mcp-server&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=Ligament/npm-package-mcp-server&type=Date)](https://www.star-history.com/#Ligament/npm-package-mcp-server&Date)
 
 ## 🤝 Related Projects
 
